@@ -2,23 +2,20 @@ package main
 
 import "fmt"
 
-func SameArr(nums []int) bool {
-	count := 0
+func main() {
+	Arr := [...]int{1, 2, 3, 2, 5, 1}
 
-	for i := 0; i < len(nums); i++ {
-		for j := i + 1; j < len(nums); j++ {
-			if nums[i] == nums[j] {
+	for i := 0; i < len(Arr); i++ {
+		count := 0
+		for j := 0; j < len(Arr); j++ {
+			if Arr[i] == Arr[j] {
 				count++
-				if count >= 2 {
-					return true
-				}
 			}
 		}
+		if count > 1 {
+			fmt.Println(Arr[i], "is true")
+		} else {
+			fmt.Println(Arr[i], "is false")
+		}
 	}
-	return false
-}
-
-func main() {
-	nums := []int{1, 0, 6, 7, 4, 7, 0}
-	fmt.Println(nums, SameArr(nums))
 }

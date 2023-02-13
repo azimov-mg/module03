@@ -24,13 +24,14 @@ func main() {
 }
 
 func GenerateCheck() []HealthCheck {
-	GenerateSlice := make([]HealthCheck, 0, 5)
+	GenerateFunc := make([]HealthCheck, 5, 5)
+
 	for i := 0; i <= 5; i++ {
 		if i%2 == 0 && i != 0 {
-			GenerateSlice = append(GenerateSlice, HealthCheck{i, PassStatus})
+			GenerateFunc = append(GenerateFunc, HealthCheck{i, PassStatus})
 		} else {
-			GenerateSlice = append(GenerateSlice, HealthCheck{i, FailStatus})
+			GenerateFunc = append(GenerateFunc, HealthCheck{i, FailStatus})
 		}
 	}
-	return GenerateSlice
+	return GenerateFunc
 }

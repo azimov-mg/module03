@@ -1,28 +1,17 @@
 package main
 
-import (
-	"fmt"
-	"sort"
-)
+import "fmt"
 
-func main() {
-	SliceString := []string{"lemon", "banana", "apple", "cherry"}
-	count := 0
-
-	sort.Slice(SliceString, func(i, j int) bool {
-		return SliceString[i] < SliceString[j]
-	})
-
-	for key, value := range SliceString {
-		if value[key] < value[key+1] {
-			count++
-			// fmt.Println(count)
+func isSorted(words []string) bool {
+	for i := 1; i < len(words); i++ {
+		if words[i-1] > words[i] {
+			return false
 		}
 	}
+	return true
+}
 
-	if count == 3 {
-		fmt.Println(SliceString, true)
-	} else {
-		fmt.Println(SliceString, false)
-	}
+func main() {
+	words := []string{"apple", "banana", "cherry"}
+	fmt.Println(isSorted(words))
 }
