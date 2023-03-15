@@ -3,19 +3,20 @@ package main
 import "fmt"
 
 func main() {
-	Arr := [...]int{1, 2, 3, 2, 5, 1}
+	nums := []int{2, 6, 8, 2, 4, 9, 1, 1, 1, 7}
+	count := 0
 
-	for i := 0; i < len(Arr); i++ {
-		count := 0
-		for j := 0; j < len(Arr); j++ {
-			if Arr[i] == Arr[j] {
+	for i := 0; i < len(nums); i++ {
+		for j := 1; j < len(nums); j++ {
+			if nums[i] == nums[j] {
 				count++
 			}
 		}
-		if count > 1 {
-			fmt.Println(Arr[i], "is true")
-		} else {
-			fmt.Println(Arr[i], "is false")
-		}
+	}
+
+	if count >= 2 {
+		fmt.Println(true)
+	} else {
+		fmt.Println(false)
 	}
 }
