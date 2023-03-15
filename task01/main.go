@@ -1,37 +1,42 @@
 package main
 
-import "fmt"
-
-type HealthCheck struct {
-	ServiceID int
-	status    string
-}
+import (
+	"fmt"
+)
 
 const (
 	PassStatus = "pass"
 	FailStatus = "fail"
 )
 
-func main() {
-	GCheck := GenerateCheck()
-	fmt.Println("ID will be print here")
-
-	for _, val := range GCheck {
-		if val.status == PassStatus {
-			fmt.Println(val.ServiceID)
-		}
-	}
+type HealthCheck struct {
+	ServiceID int
+	status    string
 }
 
-func GenerateCheck() []HealthCheck {
-	GenerateFunc := make([]HealthCheck, 5, 5)
+func GenerateCheck() []*HealthCheck {
 
+	var checks []*HealthCheck
 	for i := 0; i <= 5; i++ {
-		if i%2 == 0 && i != 0 {
-			GenerateFunc = append(GenerateFunc, HealthCheck{i, PassStatus})
+		s := &HealthCheck{ServiceID: i}
+		if s.ServiceID%2 == 0 && s.ServiceID != 0 {
+			s.status = PassStatus
 		} else {
-			GenerateFunc = append(GenerateFunc, HealthCheck{i, FailStatus})
+			s.status = FailStatus
+		}
+		checks = append(checks, s)
+	}
+	return checks
+}
+
+func main() {
+	fmt.Println("The identification and its status will be shown:")
+
+	gChecks := GenerateCheck()
+
+	for _, check := range gChecks {
+		if check.status == PassStatus {
+			fmt.Printf("Service ID : %d, Status: %s\n", check.ServiceID, check.status)
 		}
 	}
-	return GenerateFunc
 }
